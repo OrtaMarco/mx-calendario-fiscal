@@ -1,0 +1,66 @@
+{
+  "name": "mx-calendario-fiscal",
+  "version": "0.1.0",
+  "description": "Fechas fiscales y días hábiles de México: días inhábiles del SAT (CFF art. 12, RMF), descanso LFT art. 74 y vencimientos del día 17, anual PF/PM, con fundamento por fecha. Sin dependencias.",
+  "keywords": [
+    "mexico",
+    "sat",
+    "calendario-fiscal",
+    "dias-habiles",
+    "dias-inhabiles",
+    "business-days",
+    "holidays",
+    "rmf",
+    "cff",
+    "diot",
+    "impuestos",
+    "tax-calendar"
+  ],
+  "homepage": "https://github.com/OrtaMarco/mx-calendario-fiscal#readme",
+  "bugs": {
+    "url": "https://github.com/OrtaMarco/mx-calendario-fiscal/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OrtaMarco/mx-calendario-fiscal.git"
+  },
+  "license": "MIT",
+  "author": "Marco Orta",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "SOURCES.md",
+    "README.es.md"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "clean": "node scripts/clean.mjs",
+    "build": "npm run clean && tsc -p tsconfig.build.json && tsc -p tsconfig.cjs.json && node scripts/postbuild.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "npm run build && tsc -p tsconfig.test.json && node --test \"dist-test/test/*.test.js\"",
+    "prepublishOnly": "npm test"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  }
+}
